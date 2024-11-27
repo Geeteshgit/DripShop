@@ -131,22 +131,7 @@ function createProductSearch() {
     priceFilter.addEventListener('change', filterProducts);
 }
 
-// Dynamic Product Rating
-function initializeProductRatings() {
-    document.querySelectorAll('.rating').forEach(ratingContainer => {
-        const stars = ratingContainer.querySelectorAll('i');
-        stars.forEach((star, index) => {
-            star.addEventListener('click', () => {
-                stars.forEach((s, i) => {
-                    s.className = i <= index ? 'fa-solid fa-star' : 'fa-regular fa-star';
-                });
-            });
-        });
-    });
-}
-
 // Initialize all dynamic features
 document.addEventListener('DOMContentLoaded', () => {
     createProductSearch();
-    initializeProductRatings();
 });
