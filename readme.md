@@ -138,5 +138,7 @@ Project Link: https://dripshop-project.vercel.app/
 - Images sourced from [assets]
 - Bennett University
 
+## Live Project URL
+[DripShop Project](https://dripshop-project.vercel.app)
 ---
 © Geetesh 2024 DripShop. All Rights Reserved.
