@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Shopping Cart - DripShop">
+    <title>Shopping Cart - DripShop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d35fb68c76.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+</head>
+<body>
+    <header id="header">
+        <a href="index.html"><img src="assets/images/Dripshop-logo.png" alt="DripShop Logo"></a>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li id="bag"><a class="active" href="cart.html"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                <i id="close" class="fa-solid fa-xmark"></i>
+            </ul>
+        </nav>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-basket-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <section id="page-header">
+        <h2>Shopping Cart</h2>
+        <p>Review your items and proceed to checkout</p>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-summary" class="section-p1">
+        <div class="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+
+        <div class="cart-total">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="cart-subtotal">$0</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td id="cart-total"><strong>$0</strong></td>
+                </tr>
+            </table>
+            <button class="normal" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <section id="newsletter">
+        <div class="container">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-Mail updates about our latest collections and offers</p>
+        </div>
+        <div class="form">
+            <form>
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="column">
+                <img class="logo" src="assets/images/Dripshop-logo.png" alt="DripShop Logo">
+                <h4>Contact</h4>
+                <p><strong>Address: </strong> Bennett University, Greater Noida, Uttar Pradesh-201310</p>
+                <p><strong>Phone: </strong> +91 9821960747</p>
+                <p><strong>Hours: </strong>10:00 - 18:00, Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow Us!</h4>
+                    <div class="icons">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>                      
+                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="column">
+                <h4>My Account</h4>
+                <a href="#">Sign In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="column">
+                <h4>Install App</h4>
+                <p>From App Store or Google Play Store</p>
+                <div class="app-con">
+                    <img src="assets/images/pay/app.jpg" alt="appstore">
+                    <img src="assets/images/pay/play.jpg" alt="playstore">
+                </div>
+                <p>Secured Payment Gateways</p>
+                <img src="assets/images/pay/pay.png" alt="">
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&#169 2024, Geetesh - DripShop Ecommerce Project</p>
+        </div>
+    </footer>
+
+    <script src="assets/javascripts/script.js"></script>
+    <script>
+        // Cart-specific JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            displayCartItems();
+            updateCartTotals();
+        });
+
+        function displayCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('dripshopCart')) || [];
+            const cartTable = document.getElementById('cart-items');
+            
+            if (cartItems.length === 0) {
+                cartTable.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center;">Your cart is empty</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            cartTable.innerHTML = cartItems.map(item => `
+                <tr>
+                    <td><a href="#" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-times-circle"></i></a></td>
+                    <td><img src="${item.image}" alt="${item.name}"></td>
+                    <td>${item.name}</td>
+                    <td>$${item.price}</td>
+                    <td>
+                        <input type="number" value="${item.quantity}" min="1" 
+                            onchange="updateQuantity('${item.id}', this.value)">
+                    </td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            const cartItems = JSON.parse(localStorage.getItem('dripshopCart')) || [];
+            const item = cartItems.find(item => item.id === productId);
+            if (item) {
+                item.quantity = parseInt(newQuantity);
+                localStorage.setItem('dripshopCart', JSON.stringify(cartItems));
+                displayCartItems();
+                updateCartTotals();
+            }
+        }
+
+        function removeFromCart(productId) {
+            const cartItems = JSON.parse(localStorage.getItem('dripshopCart')) || [];
+            const updatedCart = cartItems.filter(item => item.id !== productId);
+            localStorage.setItem('dripshopCart', JSON.stringify(updatedCart));
+            displayCartItems();
+            updateCartTotals();
+            updateCartDisplay(); // Update the cart icon
+        }
+
+        function updateCartTotals() {
+            const cartItems = JSON.parse(localStorage.getItem('dripshopCart')) || [];
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        function proceedToCheckout() {
+            const cartItems = JSON.parse(localStorage.getItem('dripshopCart')) || [];
+            if (cartItems.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            // Add your checkout logic here
+            alert('Proceeding to checkout...');
+        }
+    </script>
+</body>
+</html>
