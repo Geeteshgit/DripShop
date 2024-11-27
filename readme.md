@@ -128,8 +128,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Navya - []
-Project Link: [https://github.com/AmandracOP/dripshop](https://github.com/AmandracOP/dripshop)
+Geetesh Dalal - []
+Project Link: 
 
 ## Acknowledgments
 
