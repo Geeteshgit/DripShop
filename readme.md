@@ -39,7 +39,7 @@ DripShop is a modern e-commerce platform specializing in fashion and apparel. Bu
 
 1. Clone the repository:
 ```bash
-git clone 
+git https://github.com/Geeteshgit/DripShop-Project.git clone 
 ```
 
 2. Navigate to the project directory:
@@ -129,13 +129,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 Geetesh Dalal - []
-Project Link: 
+Project Link: https://dripshop-project.vercel.app/
 
 ## Acknowledgments
 
 - Font Awesome for icons
 - Google Fonts for typography
-- Images sourced from [source]
+- Images sourced from [assets]
 - Bennett University
 
 ---
