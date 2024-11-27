@@ -128,8 +128,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Geetesh Dalal - []
-Project Link: https://dripshop-project.vercel.app/
+Geetesh Dalal
 
 ## Acknowledgments
 
